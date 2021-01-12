@@ -36,6 +36,7 @@ dependencies:
   flutter_spinkit: ^4.1.2+1
   equatable: ^1.2.5
   shared_preferences: ^0.5.12+4
+  font_awesome_flutter: ^8.11.0
 
 
 
@@ -58,6 +59,7 @@ flutter:
   assets:
     - assets/images/img2.jpg
     - assets/images/img1.png
+    - assets/images/img3.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

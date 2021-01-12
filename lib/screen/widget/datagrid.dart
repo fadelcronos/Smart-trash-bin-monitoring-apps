@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:signIn/screen/add_user_screen/add_user.dart';
 
 class GridDashboard extends StatelessWidget {
   @override
@@ -9,7 +11,7 @@ class GridDashboard extends StatelessWidget {
           title: 'Fill Level',
           subtitle: 'subtitle item 1',
           event: 'event item 1',
-          icon: Icons.restore_from_trash_outlined,
+          icon: FontAwesomeIcons.fill,
           onPressed: () {
             print('blablabla');
           }),
@@ -17,7 +19,7 @@ class GridDashboard extends StatelessWidget {
           title: 'Air Quality',
           subtitle: 'subtitle item 2',
           event: 'event item 2',
-          icon: Icons.ac_unit,
+          icon: FontAwesomeIcons.wind,
           onPressed: () {
             print('blablabla');
           }),
@@ -25,7 +27,7 @@ class GridDashboard extends StatelessWidget {
           title: 'Fill Level Log',
           subtitle: 'subtitle item 3',
           event: 'event item 3',
-          icon: Icons.history_edu,
+          icon: FontAwesomeIcons.history,
           onPressed: () {
             print('blablabla');
           }),
@@ -33,9 +35,17 @@ class GridDashboard extends StatelessWidget {
           title: 'Air Quality Log',
           subtitle: 'subtitle item 4',
           event: 'event item 4',
-          icon: Icons.history,
+          icon: FontAwesomeIcons.history,
           onPressed: () {
             print('blablabla');
+          }),
+      new Item(
+          title: 'Add User',
+          subtitle: 'subtitle item 4',
+          event: 'event item 4',
+          icon: FontAwesomeIcons.userPlus,
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => AddUser()));
           }),
     ];
 

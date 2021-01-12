@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: <Widget>[
           SizedBox(
-            height: 110,
+            height: 100,
           ),
           Padding(
             padding: EdgeInsets.only(left: 15, right: 16, bottom: 25),
