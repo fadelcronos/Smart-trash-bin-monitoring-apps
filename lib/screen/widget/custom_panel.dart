@@ -1,17 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class AddUser extends StatefulWidget {
-  @override
-  _AddUserState createState() => _AddUserState();
-}
+class CustomPanel extends StatelessWidget {
+  final String appbar;
+  final String image;
+  final String subtitle;
+  final List<Widget> content;
 
-class _AddUserState extends State<AddUser> {
+  CustomPanel({this.appbar, this.image, this.subtitle, this.content});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add New User"),
+        title: Text(appbar),
         backgroundColor: Colors.green,
       ),
       backgroundColor: Color(0xff1b4332),
@@ -32,9 +34,7 @@ class _AddUserState extends State<AddUser> {
                 Padding(
                   padding: EdgeInsets.all(20),
                   child: Column(
-                    children: [
-                      TextFormField(),
-                    ],
+                    children: content,
                   ),
                 ),
               ],
@@ -42,13 +42,13 @@ class _AddUserState extends State<AddUser> {
         body: Column(
           children: <Widget>[
             Image.asset(
-              'assets/images/img3.png',
+              image,
               width: 300,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 10),
               child: Text(
-                "Register New User",
+                subtitle,
                 style: TextStyle(color: Colors.white, fontSize: 25),
               ),
             ),
@@ -58,28 +58,3 @@ class _AddUserState extends State<AddUser> {
     );
   }
 }
-
-//  Container(
-//         alignment: Alignment.center,
-//         // height: MediaQuery.of(context).size.height * 0.5,
-//         decoration: BoxDecoration(),
-//         child: Padding(
-//           padding: const EdgeInsets.only(top: 20),
-//           child: Column(
-//             children: <Widget>[
-//               Image.asset(
-//                 'assets/images/img3.png',
-//                 width: 300,
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.only(top: 20, bottom: 10),
-//                 child: Text(
-//                   "Register New User",
-//                   style: TextStyle(color: Colors.white, fontSize: 25),
-//                 ),
-//               ),
-
-//             ],
-//           ),
-//         ),
-//       ),

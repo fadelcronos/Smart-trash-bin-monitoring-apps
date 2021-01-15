@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:signIn/screen/add_user_screen/add_user.dart';
+import 'package:signIn/screen/widget/register_form/register_form.dart';
+
+import 'custom_panel.dart';
 
 class GridDashboard extends StatelessWidget {
   @override
@@ -13,7 +16,17 @@ class GridDashboard extends StatelessWidget {
           event: 'event item 1',
           icon: FontAwesomeIcons.fill,
           onPressed: () {
-            print('blablabla');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPanel(
+                          appbar: 'Fill Level',
+                          image: 'assets/images/fill_level.png',
+                          subtitle: 'Fill Level',
+                          content: [
+                            TextFormField(),
+                          ],
+                        )));
           }),
       new Item(
           title: 'Air Quality',
@@ -21,7 +34,17 @@ class GridDashboard extends StatelessWidget {
           event: 'event item 2',
           icon: FontAwesomeIcons.wind,
           onPressed: () {
-            print('blablabla');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPanel(
+                          appbar: 'Air Quality',
+                          image: 'assets/images/air_quality.png',
+                          subtitle: 'Air Quality Level',
+                          content: [
+                            TextFormField(),
+                          ],
+                        )));
           }),
       new Item(
           title: 'Fill Level Log',
@@ -29,15 +52,35 @@ class GridDashboard extends StatelessWidget {
           event: 'event item 3',
           icon: FontAwesomeIcons.history,
           onPressed: () {
-            print('blablabla');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPanel(
+                          appbar: 'Fill Level Log',
+                          image: 'assets/images/fill_log.png',
+                          subtitle: 'Fill Level History Log',
+                          content: [
+                            TextFormField(),
+                          ],
+                        )));
           }),
       new Item(
           title: 'Air Quality Log',
           subtitle: 'subtitle item 4',
           event: 'event item 4',
-          icon: FontAwesomeIcons.history,
+          icon: FontAwesomeIcons.calendar,
           onPressed: () {
-            print('blablabla');
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPanel(
+                          appbar: 'Air Quality History',
+                          image: 'assets/images/air_log.png',
+                          subtitle: 'Air Quality History Log',
+                          content: [
+                            TextFormField(),
+                          ],
+                        )));
           }),
       new Item(
           title: 'Add User',
@@ -45,7 +88,15 @@ class GridDashboard extends StatelessWidget {
           event: 'event item 4',
           icon: FontAwesomeIcons.userPlus,
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AddUser()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPanel(
+                          appbar: 'Add New User',
+                          image: 'assets/images/img3.png',
+                          subtitle: 'Register New User',
+                          content: [RegisForm()],
+                        )));
           }),
     ];
 
