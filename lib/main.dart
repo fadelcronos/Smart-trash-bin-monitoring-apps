@@ -1,10 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:signIn/screen/login_screen/bloc/login_bloc.dart';
 import 'package:signIn/screen/login_screen/signin.dart';
 import 'package:signIn/screen/widget/register_form/bloc/register_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(create: (context) => LoginBloc()),
     BlocProvider(create: (context) => RegisterBloc()),

@@ -21,7 +21,10 @@ class WidgetNotificationSnackbar {
             Radius.circular(10),
           ),
         ),
-        content: Text(message ?? ''),
+        content: Text(
+          message ?? '',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }

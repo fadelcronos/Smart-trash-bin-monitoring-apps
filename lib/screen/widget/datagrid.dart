@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:signIn/screen/add_user_screen/add_user.dart';
+import 'package:signIn/screen/widget/air_quality/bar_chart_odor.dart';
+import 'package:signIn/screen/widget/fill_level/bar_chart.dart';
 import 'package:signIn/screen/widget/register_form/register_form.dart';
 
 import 'custom_panel.dart';
@@ -22,14 +24,12 @@ class GridDashboard extends StatelessWidget {
                     builder: (context) => CustomPanel(
                           appbar: 'Fill Level',
                           image: 'assets/images/fill_level.png',
-                          subtitle: 'Fill Level',
-                          content: [
-                            TextFormField(),
-                          ],
+                          subtitle: 'Fill Level Sensor',
+                          content: [BarChartCustom()],
                         )));
           }),
       new Item(
-          title: 'Air Quality',
+          title: 'Odor Sensor',
           subtitle: 'subtitle item 2',
           event: 'event item 2',
           icon: FontAwesomeIcons.wind,
@@ -40,9 +40,9 @@ class GridDashboard extends StatelessWidget {
                     builder: (context) => CustomPanel(
                           appbar: 'Air Quality',
                           image: 'assets/images/air_quality.png',
-                          subtitle: 'Air Quality Level',
+                          subtitle: 'Methane Gas Level Sensor',
                           content: [
-                            TextFormField(),
+                            BarOdor(),
                           ],
                         )));
           }),
