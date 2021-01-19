@@ -104,7 +104,13 @@ class _BarChartCustomState extends State<BarChartCustom> {
             ),
           ),
         ),
-        Text(_counter.roundToDouble().toString()),
+        Text(
+          _counter.round().toString() + "%",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 40,
+          ),
+        ),
       ],
     );
   }

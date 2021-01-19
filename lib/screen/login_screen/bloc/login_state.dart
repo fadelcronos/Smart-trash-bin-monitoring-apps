@@ -9,7 +9,12 @@ abstract class LoginState extends Equatable {
 
 class LoginInitial extends LoginState {}
 
-class LoginSuccess extends LoginState {}
+class LoginSuccess extends LoginState {
+  final String email;
+  final String roles;
+
+  LoginSuccess({@required this.email, this.roles});
+}
 
 class LoginFail extends LoginState {
   final String message;

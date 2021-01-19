@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
             }
             if (state is LoginSuccess) {
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                return HomePage();
+                return HomePage(email: state.email, roles: state.roles);
               }));
             }
           },

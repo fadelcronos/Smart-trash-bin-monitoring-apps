@@ -1,8 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:signIn/screen/login_screen/signin.dart';
 import 'package:signIn/screen/widget/datagrid.dart';
 
 class HomePage extends StatefulWidget {
+  final String email;
+  final String roles;
+  HomePage({this.email, this.roles});
+  // ignore: deprecated_member_use
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -26,14 +33,14 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Account member",
+                      widget.email,
                       style: GoogleFonts.raleway(textStyle: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold)),
                     ),
                     SizedBox(
                       height: 4,
                     ),
                     Text(
-                      "Admin",
+                      widget.roles,
                       style: TextStyle(
                         color: Color(0xffa28aac),
                         fontSize: 14,
@@ -49,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     color: Colors.white,
                     size: 30,
                   ),
-                  onPressed: () {},
+                  onPressed: signOut,
                 )
               ],
             ),
@@ -58,5 +65,14 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  Future<void> signOut() {
+    FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(context, MaterialPageRoute(
+      builder: (context) {
+        return LoginPage();
+      },
+    ));
   }
 }

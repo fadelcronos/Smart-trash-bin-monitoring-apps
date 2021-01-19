@@ -28,9 +28,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     try {
       SignInResponse signInResponse = await signInAdmin(event.admin);
-      print(signInResponse.message);
+      print("++++++++++++++++++++++++++++++++++++");
+      print(signInResponse.user.email);
       if (signInResponse.message.toLowerCase() == 'login success') {
-        yield LoginSuccess();
+        if (signInResponse.user.email == "fadel@gmail.com") {
+          yield LoginSuccess(email: signInResponse.user.email, roles: "Admin");
+        } else {
+          yield LoginSuccess(email: signInResponse.user.email, roles: "User");
+        }
       } else {
         yield LoginFail(
           message: signInResponse.message.replaceAll(new RegExp(r'[\(\[].*?[\)\]]'), ''),

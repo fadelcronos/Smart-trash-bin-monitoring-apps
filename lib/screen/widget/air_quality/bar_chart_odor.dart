@@ -12,12 +12,13 @@ class BarOdor extends StatefulWidget {
 
 class _BarOdorState extends State<BarOdor> {
   FirebaseApp app;
-  int _counter;
+  double _counter;
   DatabaseReference _counterRef;
   DatabaseReference _messagesRef;
   StreamSubscription<Event> _counterSubscription;
   StreamSubscription<Event> _messagesSubscription;
   DatabaseError _error;
+
   @override
   void initState() {
     super.initState();
@@ -103,7 +104,10 @@ class _BarOdorState extends State<BarOdor> {
             ),
           ),
         ),
-        Text(_counter.toString()),
+        Text(_counter.round().toString()),
+        SizedBox(
+          height: 20,
+        ),
       ],
     );
   }
