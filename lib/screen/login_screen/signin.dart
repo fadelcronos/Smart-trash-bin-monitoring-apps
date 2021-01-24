@@ -73,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                               if (input.isEmpty) {
                                 return 'Please type an email';
                               }
+                              return '';
                             },
                             onSaved: (input) => _email = input,
                             decoration: InputDecoration(
@@ -90,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                               } else if (input.length < 6) {
                                 return 'The password must be 6 character';
                               }
+                              return '';
                             },
                             onSaved: (input) => _pass = input,
                             decoration: InputDecoration(
@@ -139,6 +141,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _handleLogin() {
     Admin admin = new Admin();
+    // ignore: non_constant_identifier_names
     final FormState = _formKey.currentState;
 
     FormState.save();

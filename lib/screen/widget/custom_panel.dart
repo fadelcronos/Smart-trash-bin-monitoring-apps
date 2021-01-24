@@ -27,18 +27,20 @@ class CustomPanel extends StatelessWidget {
         minHeight: MediaQuery.of(context).size.height * 0.5,
         defaultPanelState: PanelState.OPEN,
         color: Colors.green,
-        panel: Container(
-            color: Colors.transparent,
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                    children: content,
+        panel: SingleChildScrollView(
+          child: Container(
+              color: Colors.transparent,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Column(
+                      children: content,
+                    ),
                   ),
-                ),
-              ],
-            )),
+                ],
+              )),
+        ),
         body: Column(
           children: <Widget>[
             Image.asset(

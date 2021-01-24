@@ -5,6 +5,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../convert_timestamp.dart';
+
 class BarOdor extends StatefulWidget {
   @override
   _BarOdorState createState() => _BarOdorState();
@@ -12,11 +14,16 @@ class BarOdor extends StatefulWidget {
 
 class _BarOdorState extends State<BarOdor> {
   FirebaseApp app;
-  double _counter;
+  int _counter;
+  int _last;
+  String _caption;
   DatabaseReference _counterRef;
+  DatabaseReference _lastUpdate;
   DatabaseReference _messagesRef;
   StreamSubscription<Event> _counterSubscription;
+  StreamSubscription<Event> _lastSubscription;
   StreamSubscription<Event> _messagesSubscription;
+  // ignore: unused_field
   DatabaseError _error;
 
   @override
@@ -26,6 +33,7 @@ class _BarOdorState extends State<BarOdor> {
 
 // Demonstrates configuring to the database using a file
     _counterRef = FirebaseDatabase.instance.reference().child('Trash1').child('Odor');
+    _lastUpdate = FirebaseDatabase.instance.reference().child('Trash1').child('Date');
     // Demonstrates configuring the database directly
     final FirebaseDatabase database = FirebaseDatabase(app: app);
     _messagesRef = database.reference().child('messages');
@@ -35,10 +43,29 @@ class _BarOdorState extends State<BarOdor> {
     database.setPersistenceEnabled(true);
     database.setPersistenceCacheSizeBytes(10000000);
     _counterRef.keepSynced(true);
+    _lastUpdate.keepSynced(true);
     _counterSubscription = _counterRef.onValue.listen((Event event) {
       setState(() {
         _error = null;
         _counter = event.snapshot.value ?? 0;
+        if (_counter <= 49) {
+          _caption = 'Smells not bad';
+        } else if (_counter > 49 && _counter < 90) {
+          _caption = 'Please clean your trash bin';
+        } else {
+          _caption = 'Trash Bin Smells Really Bad';
+        }
+      });
+    }, onError: (Object o) {
+      final DatabaseError error = o;
+      setState(() {
+        _error = error;
+      });
+    });
+    _lastSubscription = _lastUpdate.onValue.listen((Event event) {
+      setState(() {
+        _error = null;
+        _last = event.snapshot.value ?? 0;
       });
     }, onError: (Object o) {
       final DatabaseError error = o;
@@ -77,9 +104,19 @@ class _BarOdorState extends State<BarOdor> {
 
   @override
   Widget build(BuildContext context) {
+    String formattedDate = ConvertTimestamp().convertTime(_last);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        SizedBox(height: 30),
+        Text(
+          _counter.round().toString() + "%",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 40,
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(20),
           child: RotatedBox(
@@ -104,9 +141,35 @@ class _BarOdorState extends State<BarOdor> {
             ),
           ),
         ),
-        Text(_counter.round().toString()),
+        Text(
+          'Last Update',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         SizedBox(
-          height: 20,
+          height: 1.0,
+        ),
+        Text(
+          formattedDate,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Text(
+          _caption,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ],
     );

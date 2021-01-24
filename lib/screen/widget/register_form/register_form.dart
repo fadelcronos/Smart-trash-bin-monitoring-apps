@@ -6,6 +6,7 @@ import 'package:signIn/screen/widget/register_form/bloc/register_bloc.dart';
 
 import '../notif_snackbar.dart';
 
+// ignore: must_be_immutable
 class RegisForm extends StatelessWidget {
   String _email, _pass;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -13,6 +14,7 @@ class RegisForm extends StatelessWidget {
   Widget build(BuildContext context) {
     _handleRegister() {
       Admin admin = new Admin();
+      // ignore: non_constant_identifier_names
       final FormState = _formKey.currentState;
 
       FormState.save();

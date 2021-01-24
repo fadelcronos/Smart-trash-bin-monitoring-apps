@@ -10,3 +10,5 @@ abstract class FilllevelState extends Equatable {
 class FilllevelInitial extends FilllevelState {}
 
 class FillDataChange extends FilllevelState {}
+
+class FillDataLoad extends FilllevelState {}

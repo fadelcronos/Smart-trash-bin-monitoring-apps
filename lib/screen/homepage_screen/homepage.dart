@@ -61,14 +61,16 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          GridDashboard(),
+          GridDashboard(
+            roles: widget.roles,
+          ),
         ],
       ),
     );
   }
 
-  Future<void> signOut() {
-    FirebaseAuth.instance.signOut();
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(context, MaterialPageRoute(
       builder: (context) {
         return LoginPage();

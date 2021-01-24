@@ -29,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       SignInResponse signInResponse = await signInAdmin(event.admin);
       print("++++++++++++++++++++++++++++++++++++");
-      print(signInResponse.user.email);
+
       if (signInResponse.message.toLowerCase() == 'login success') {
         if (signInResponse.user.email == "fadel@gmail.com") {
           yield LoginSuccess(email: signInResponse.user.email, roles: "Admin");
@@ -42,11 +42,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         );
       }
     } catch (e) {
-      if (e.code == 'wrong-password') {
-        print("=========================");
-        print("PW SALAH COK");
-        print("=========================");
-      }
+      print(e);
       yield LoginFail(message: 'Login Fail');
     }
   }

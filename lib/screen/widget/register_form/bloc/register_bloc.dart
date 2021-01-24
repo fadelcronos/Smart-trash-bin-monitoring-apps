@@ -30,7 +30,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       RegisterResponse regisResponse = await registerAdmin(event.admin);
       print(regisResponse.message);
       if (regisResponse.message.toLowerCase() == 'register success') {
-        yield RegisterSuccess();
+        yield RegisterSuccess(message: 'Account Successfully Registered');
       } else {
         yield RegisterFail(
           message: regisResponse.message.replaceAll(new RegExp(r'[\(\[].*?[\)\]]'), ''),

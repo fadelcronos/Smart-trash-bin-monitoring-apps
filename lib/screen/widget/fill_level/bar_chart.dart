@@ -12,11 +12,12 @@ class BarChartCustom extends StatefulWidget {
 
 class _BarChartCustomState extends State<BarChartCustom> {
   FirebaseApp app;
-  double _counter;
+  int _counter;
   DatabaseReference _counterRef;
   DatabaseReference _messagesRef;
   StreamSubscription<Event> _counterSubscription;
   StreamSubscription<Event> _messagesSubscription;
+  // ignore: unused_field
   DatabaseError _error;
 
   @override
@@ -80,6 +81,14 @@ class _BarChartCustomState extends State<BarChartCustom> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        SizedBox(height: 30),
+        Text(
+          _counter.round().toString() + "%",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 40,
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.all(20),
           child: RotatedBox(
@@ -102,13 +111,6 @@ class _BarChartCustomState extends State<BarChartCustom> {
                       ? Colors.amber
                       : Colors.green[900],
             ),
-          ),
-        ),
-        Text(
-          _counter.round().toString() + "%",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 40,
           ),
         ),
       ],
