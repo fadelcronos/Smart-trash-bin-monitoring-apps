@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:signIn/screen/widget/air_log/air_log.dart';
 import 'package:signIn/screen/widget/air_quality/bar_chart_odor.dart';
 import 'package:signIn/screen/widget/fill_level/bar_chart.dart';
 import 'package:signIn/screen/widget/register_form/register_form.dart';
@@ -77,9 +78,7 @@ class GridDashboard extends StatelessWidget {
                           appbar: 'Air Quality History',
                           image: 'assets/images/air_log.png',
                           subtitle: 'Air Quality History Log',
-                          content: [
-                            TextFormField(),
-                          ],
+                          content: [AirLog()],
                         )));
           }),
       new Item(

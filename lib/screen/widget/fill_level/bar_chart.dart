@@ -5,6 +5,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../convert_timestamp.dart';
+
 class BarChartCustom extends StatefulWidget {
   @override
   _BarChartCustomState createState() => _BarChartCustomState();
@@ -13,9 +15,13 @@ class BarChartCustom extends StatefulWidget {
 class _BarChartCustomState extends State<BarChartCustom> {
   FirebaseApp app;
   int _counter;
+  int _last;
+  String _caption;
   DatabaseReference _counterRef;
+  DatabaseReference _lastUpdate;
   DatabaseReference _messagesRef;
   StreamSubscription<Event> _counterSubscription;
+  StreamSubscription<Event> _lastSubscription;
   StreamSubscription<Event> _messagesSubscription;
   // ignore: unused_field
   DatabaseError _error;
@@ -27,6 +33,8 @@ class _BarChartCustomState extends State<BarChartCustom> {
 
 // Demonstrates configuring to the database using a file
     _counterRef = FirebaseDatabase.instance.reference().child('Trash1').child('Fill_level');
+    _lastUpdate = FirebaseDatabase.instance.reference().child('Trash1').child('Date');
+
     // Demonstrates configuring the database directly
     final FirebaseDatabase database = FirebaseDatabase(app: app);
     _messagesRef = database.reference().child('messages');
@@ -36,10 +44,30 @@ class _BarChartCustomState extends State<BarChartCustom> {
     database.setPersistenceEnabled(true);
     database.setPersistenceCacheSizeBytes(10000000);
     _counterRef.keepSynced(true);
+    _lastUpdate.keepSynced(true);
+
     _counterSubscription = _counterRef.onValue.listen((Event event) {
       setState(() {
         _error = null;
         _counter = event.snapshot.value ?? 0;
+        if (_counter <= 49) {
+          _caption = 'Trash is not full yet';
+        } else if (_counter > 49 && _counter < 90) {
+          _caption = 'Almost Full, Please Pick Up the Trash';
+        } else {
+          _caption = 'Trash Bin is Full, Cant Open The Tray';
+        }
+      });
+    }, onError: (Object o) {
+      final DatabaseError error = o;
+      setState(() {
+        _error = error;
+      });
+    });
+    _lastSubscription = _lastUpdate.onValue.listen((Event event) {
+      setState(() {
+        _error = null;
+        _last = event.snapshot.value ?? 0;
       });
     }, onError: (Object o) {
       final DatabaseError error = o;
@@ -77,7 +105,8 @@ class _BarChartCustomState extends State<BarChartCustom> {
   final referenceDatabase = FirebaseDatabase.instance.reference();
   @override
   Widget build(BuildContext context) {
-    print(_counter);
+    String formattedDate = ConvertTimestamp().convertTime(_last);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -111,6 +140,36 @@ class _BarChartCustomState extends State<BarChartCustom> {
                       ? Colors.amber
                       : Colors.green[900],
             ),
+          ),
+        ),
+        Text(
+          'Last Update',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          height: 1.0,
+        ),
+        Text(
+          formattedDate,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Text(
+          _caption,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
           ),
         ),
       ],
