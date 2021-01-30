@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:signIn/models/admin.dart';
 import 'package:signIn/screen/widget/register_form/bloc/register_bloc.dart';
 
@@ -50,10 +51,18 @@ class RegisForm extends StatelessWidget {
           key: _formKey,
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 20,
+              top: 10,
             ),
             child: Column(
               children: [
+                Icon(
+                  FontAwesomeIcons.userPlus,
+                  color: Colors.white,
+                  size: 50,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   decoration: new InputDecoration(
                     border: new OutlineInputBorder(
@@ -91,7 +100,7 @@ class RegisForm extends StatelessWidget {
                   onSaved: (input) => _pass = input,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 25,
                 ),
                 BlocBuilder<RegisterBloc, RegisterState>(
                   builder: (context, state) {
@@ -107,7 +116,7 @@ class RegisForm extends StatelessWidget {
                         "Register",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 17,
+                          fontSize: 18,
                         ),
                       ),
                     );

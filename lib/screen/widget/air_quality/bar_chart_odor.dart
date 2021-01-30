@@ -51,9 +51,9 @@ class _BarOdorState extends State<BarOdor> {
         if (_counter <= 49) {
           _caption = 'Smells not bad';
         } else if (_counter > 49 && _counter < 90) {
-          _caption = 'Please clean your trash bin';
+          _caption = 'Smells Bad, Please clean your trash bin';
         } else {
-          _caption = 'Trash Bin Smells Really Bad';
+          _caption = 'Trash Bin Smells Really Bad, Please Clean It Now!';
         }
       });
     }, onError: (Object o) {
@@ -163,12 +163,15 @@ class _BarOdorState extends State<BarOdor> {
         SizedBox(
           height: 30,
         ),
-        Text(
-          _caption,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
+        Center(
+          child: Text(
+            _caption,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ],

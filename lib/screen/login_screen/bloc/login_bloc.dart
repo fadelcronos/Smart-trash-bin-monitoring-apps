@@ -31,7 +31,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       print("++++++++++++++++++++++++++++++++++++");
 
       if (signInResponse.message.toLowerCase() == 'login success') {
-        if (signInResponse.user.email == "fadel@gmail.com") {
+        if (signInResponse.user.email == "admin@gmail.com") {
           yield LoginSuccess(email: signInResponse.user.email, roles: "Admin");
         } else {
           yield LoginSuccess(email: signInResponse.user.email, roles: "User");

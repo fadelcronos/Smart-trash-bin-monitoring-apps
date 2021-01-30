@@ -51,11 +51,11 @@ class _BarChartCustomState extends State<BarChartCustom> {
         _error = null;
         _counter = event.snapshot.value ?? 0;
         if (_counter <= 49) {
-          _caption = 'Trash is not full yet';
-        } else if (_counter > 49 && _counter < 90) {
-          _caption = 'Almost Full, Please Pick Up the Trash';
+          _caption = 'Trash Bin Fill Level Good!';
+        } else if (_counter > 49 && _counter < 85) {
+          _caption = 'Almost Full, Please Pick Up the Trash!';
         } else {
-          _caption = 'Trash Bin is Full, Cant Open The Tray';
+          _caption = 'Trash Bin is Full, Cant Open The Tray. Please Pick Up The Trash';
         }
       });
     }, onError: (Object o) {
@@ -164,12 +164,15 @@ class _BarChartCustomState extends State<BarChartCustom> {
         SizedBox(
           height: 30,
         ),
-        Text(
-          _caption,
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
+        Center(
+          child: Text(
+            _caption,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ],

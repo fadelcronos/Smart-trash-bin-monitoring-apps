@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       widget.roles,
                       style: TextStyle(
-                        color: Color(0xffa28aac),
+                        color: Colors.white60,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
