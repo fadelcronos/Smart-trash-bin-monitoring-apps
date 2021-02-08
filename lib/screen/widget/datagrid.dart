@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:signIn/screen/widget/air_log/air_log.dart';
 import 'package:signIn/screen/widget/air_quality/bar_chart_odor.dart';
 import 'package:signIn/screen/widget/fill_level/bar_chart.dart';
+import 'package:signIn/screen/widget/manage_user/manage_user.dart';
 import 'package:signIn/screen/widget/register_form/register_form.dart';
 
 import 'custom_panel.dart';
@@ -82,18 +83,18 @@ class GridDashboard extends StatelessWidget {
                         )));
           }),
       new Item(
-          title: 'Add User',
+          title: 'Manage User',
           subtitle: 'subtitle item 4',
           event: 'event item 4',
-          icon: FontAwesomeIcons.userPlus,
+          icon: FontAwesomeIcons.usersCog,
           onPressed: () {
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => CustomPanel(
-                          appbar: 'Add New User',
+                          appbar: 'Manage User',
                           image: 'assets/images/img3.png',
-                          subtitle: 'Register New User',
+                          subtitle: 'User Account Management',
                           content: [RegisForm()],
                         )));
           }),

@@ -51,17 +51,28 @@ class RegisForm extends StatelessWidget {
           key: _formKey,
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 10,
+              top: 5,
             ),
             child: Column(
               children: [
                 Icon(
                   FontAwesomeIcons.userPlus,
-                  color: Colors.white,
                   size: 50,
+                  color: Colors.white,
                 ),
                 SizedBox(
                   height: 20,
+                ),
+                Text(
+                  'Register New User',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
                 ),
                 TextFormField(
                   decoration: new InputDecoration(

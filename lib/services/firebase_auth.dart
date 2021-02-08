@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:signIn/models/admin.dart';
 import 'package:signIn/models/login_response.dart';
 import 'package:signIn/models/register_response.dart';
+import 'package:signIn/models/update_pass_response.dart';
 
 class FireBaseAuthService {
   static FirebaseAuth _auth = FirebaseAuth.instance;
@@ -32,6 +33,17 @@ class FireBaseAuthService {
       return RegisterResponse(user: cred.user);
     } catch (e) {
       return RegisterResponse(message: e.toString());
+    }
+  }
+
+  static Future<UpdateResponse> updatePass({Admin admin}) async {
+    await Firebase.initializeApp();
+    try {
+      User cred = await _regis.currentUser;
+      cred.updatePassword(admin.pass);
+      return UpdateResponse();
+    } catch (e) {
+      return UpdateResponse(message: e.toString());
     }
   }
 }
